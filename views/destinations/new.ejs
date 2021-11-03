@@ -1,6 +1,7 @@
 <%- include('../partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/movies/show.css" />
+<link rel="stylesheet" href="/stylesheets/movies/new.css" />
 <%- include('../partials/nav') %>
+
 
 <main>
   <h1><%= title %></h1>
@@ -45,10 +46,28 @@
   </table>
 <% } else { %> 
   <h3>No Tickets Yet</h3>
+
+<h3>Destination</h3>
+<section>
+  <% if (flight.destination.length) { %>
+    <% flight.destination.forEach(function(d) { %>
+    <label>Destination Airport</label>
+    <div><%= d.airport %></div>
+</section>
+<h3>Add Destination</h3>
+    <form id="add-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
+        <label>Add a Destination: </label>
+        <select name="airport"> 
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN">DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+        </select>
+        <input type="submit" value="Add Destination"> 
+        </form>
+</section>
 </body>
 </html>
 </main>
-
-
-
-<%- include('../partials/footer') %>
+<%- include("../partials/footer") %>
